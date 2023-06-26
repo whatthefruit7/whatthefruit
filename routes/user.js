@@ -128,7 +128,7 @@ router.get("/emailVerification", middleware.isNotLoggedIn, async (req, res) => {
     csrfToken: req.csrfToken(),
     successMsg,
     errorMsg,
-    pageName: "Forgot Password",
+    pageName: "Email Verification",
   });
 });
 
@@ -286,6 +286,7 @@ router.post(
     try {
       // cart logic when the user logs in
       let cart = await Cart.findOne({ user: req.user._id });
+      console.log(req.user);
 
       // if there is a cart session and user has no cart, save it to the user's cart in db
       if (req.session.cart && !cart) {
