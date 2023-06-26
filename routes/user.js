@@ -38,7 +38,7 @@ router.post(
     userSignUpValidationRules(),
     validateSignup,
     passport.authenticate("local.signup", {
-      successRedirect: "/user/signin",
+      successRedirect: "/user/emailVerification",
       successFlash:true,
       failureRedirect: "/user/signup",
       failureFlash: true,
@@ -53,44 +53,44 @@ router.post(
         await cart.save();
       }
 
-      // Generate verification token for the user
-      req.user.generateVerificationToken();
-      await req.user.save();
+      // // Generate verification token for the user
+      // req.user.generateVerificationToken();
+      // await req.user.save();
 
-      // Send verification email to the user
-      const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        service: "Gmail",
-        secure: false,
-        auth: {
-          user: process.env.GMAIL_EMAIL,
-          pass: process.env.GMAIL_PASSWORD,
-        },
-      });
+      // // Send verification email to the user
+      // const transporter = nodemailer.createTransport({
+      //   host: "smtp.gmail.com",
+      //   port: 587,
+      //   service: "Gmail",
+      //   secure: false,
+      //   auth: {
+      //     user: process.env.GMAIL_EMAIL,
+      //     pass: process.env.GMAIL_PASSWORD,
+      //   },
+      // });
 
-      const mailOptions = {
-        from: process.env.GMAIL_EMAIL,
-        to: req.user.email,
-        subject: "Email Verification",
-        text:
-          "Thank you for signing up! Please verify your email address by clicking on the following link:\n\n" +
-          `http://${req.headers.host}/user/verify/?token=${req.user.emailVerificationToken}\n\n` +
-          "If you did not sign up for this account, please ignore this email.\n",
-      };
+      // const mailOptions = {
+      //   from: process.env.GMAIL_EMAIL,
+      //   to: req.user.email,
+      //   subject: "Email Verification",
+      //   text:
+      //     "Thank you for signing up! Please verify your email address by clicking on the following link:\n\n" +
+      //     `http://${req.headers.host}/user/verify/?token=${req.user.emailVerificationToken}\n\n` +
+      //     "If you did not sign up for this account, please ignore this email.\n",
+      // };
 
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          console.log(error);
-          req.flash("error", "An error occurred while sending the email.");
-          return res.redirect("/user/signup");
-        }
+      // transporter.sendMail(mailOptions, (error, info) => {
+      //   if (error) {
+      //     console.log(error);
+      //     req.flash("error", "An error occurred while sending the email.");
+      //     return res.redirect("/user/signup");
+      //   }
 
-        console.log("Email sent:", info.response);
-        req.flash(
-          "success",
-          "An email has been sent with instructions to verify your email address."
-        );
+      //   console.log("Email sent:", info.response);
+      //   req.flash(
+      //     "success",
+      //     "An email has been sent with instructions to verify your email address."
+      //   );
 
         // Redirect to the previous URL
         if (req.session.oldUrl) {
@@ -100,7 +100,7 @@ router.post(
         } else {
           res.redirect("/user/signin");
         }
-      });
+      // });
     } catch (err) {
       console.log(err);
       req.flash("error", err.message);
