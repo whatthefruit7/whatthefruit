@@ -1,15 +1,15 @@
 const express = require("express");
-const router = express.Router();
+const router = new express.Router();
 const Product = require("../models/product");
 const Category = require("../models/category");
-var moment = require("moment");
+const moment = require("moment");
 
 // GET: display all products
 router.get("/", async (req, res) => {
   const successMsg = req.flash("success")[0];
   const errorMsg = req.flash("error")[0];
   const perPage = 8;
-  let page = parseInt(req.query.page) || 1;
+  const page = parseInt(req.query.page) || 1;
   try {
     const products = await Product.find({})
       .sort("-createdAt")
@@ -38,7 +38,7 @@ router.get("/", async (req, res) => {
 // GET: search box
 router.get("/search", async (req, res) => {
   const perPage = 8;
-  let page = parseInt(req.query.page) || 1;
+  const page = parseInt(req.query.page) || 1;
   const successMsg = req.flash("success")[0];
   const errorMsg = req.flash("error")[0];
 
@@ -70,12 +70,12 @@ router.get("/search", async (req, res) => {
   }
 });
 
-//GET: get a certain category by its slug (this is used for the categories navbar)
+// GET: get a certain category by its slug (this is used for the categories navbar)
 router.get("/:slug", async (req, res) => {
   const successMsg = req.flash("success")[0];
   const errorMsg = req.flash("error")[0];
   const perPage = 8;
-  let page = parseInt(req.query.page) || 1;
+  const page = parseInt(req.query.page) || 1;
   try {
     const foundCategory = await Category.findOne({ slug: req.params.slug });
     const allProducts = await Product.find({ category: foundCategory.id })

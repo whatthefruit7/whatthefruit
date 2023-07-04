@@ -3,8 +3,7 @@ const Schema = mongoose.Schema;
 const slug = require("mongoose-slug-updater");
 
 mongoose.plugin(slug);
-
-const categorySchema = Schema({
+const categorySchema = new Schema({
   title: {
     type: String,
     required: true,

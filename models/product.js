@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const productSchema = Schema({
+const productSchema = new Schema({
   productCode: {
     type: String,
     required: true,
@@ -22,6 +22,9 @@ const productSchema = Schema({
   price: {
     type: Number,
     required: true,
+  },
+  discountPrice: {
+    type: Number,
   },
   category: {
     type: mongoose.Schema.Types.ObjectId,

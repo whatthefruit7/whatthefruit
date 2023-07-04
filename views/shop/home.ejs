@@ -164,7 +164,20 @@
                 >
                   <h6 class="mt-2 mb-2"><%= products[i].title %></h6></a
                 >
-                <div class="price">₹<%= products[i].price %></div>
+                <% if (products[i].discountPrice) { %>
+                  <div class="price">
+                    <span class="regular-price">
+                      <del>₹<%= products[i].price %></del>
+                    </span>
+                    <span class="discounted-price" style="color: rgb(5, 107, 5);font-family: 'Bungee', cursive; font-size: 1.5em;">
+                      ₹<%= products[i].discountPrice %>
+                    </span>
+                  </div>
+                <% } else { %>
+                  <div class="price">
+                    ₹<%= products[i].price %>
+                  </div>
+                <% } %>
               </div>
               <% if(products[i].available) {%>
               <a
@@ -210,7 +223,20 @@
                 >
                   <h6 class="mt-2 mb-2"><%= products[i].title %></h6></a
                 >
-                <div class="price">₹<%= products[i].price %></div>
+                <% if (products[i].discountPrice) { %>
+                  <div class="price">
+                    <span class="regular-price">
+                      <del>₹<%= products[i].price %></del>
+                    </span>
+                    <span class="discounted-price" style="color: rgb(5, 107, 5);font-family: 'Bungee', cursive; font-size: 1.5em;">
+                      ₹<%= products[i].discountPrice %>
+                    </span>
+                  </div>
+                <% } else { %>
+                  <div class="price">
+                    ₹<%= products[i].price %>
+                  </div>
+                <% } %>
               </div>
               <% if(products[i].available) {%>
               <a
@@ -256,7 +282,20 @@
                 >
                   <h6 class="mt-2 mb-2"><%= products[i].title %></h6></a
                 >
-                <div class="price">₹<%= products[i].price %></div>
+                <% if (products[i].discountPrice) { %>
+                  <div class="price">
+                    <span class="regular-price">
+                      <del>₹<%= products[i].price %></del>
+                    </span>
+                    <span class="discounted-price" style="color: rgb(5, 107, 5);font-family: 'Bungee', cursive; font-size: 1.5em;">
+                      ₹<%= products[i].discountPrice %>
+                    </span>
+                  </div>
+                <% } else { %>
+                  <div class="price">
+                    ₹<%= products[i].price %>
+                  </div>
+                <% } %>
               </div>
               <% if(products[i].available) {%>
               <a

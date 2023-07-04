@@ -9,12 +9,10 @@ const session = require("express-session");
 const passport = require("passport");
 const flash = require("connect-flash");
 const Category = require("./models/category");
-var MongoStore = require("connect-mongo")(session);
+const MongoStore = require("connect-mongo")(session);
 const connectDB = require("./config/db");
-
-const razorpay = require('razorpay');
-
 const app = express();
+
 require("./config/passport");
 
 // mongodb configuration
@@ -40,7 +38,7 @@ app.use(
     store: new MongoStore({
       mongooseConnection: mongoose.connection,
     }),
-    //session expires after 3 hours
+    // session expires after 3 hours
     cookie: { maxAge: 60 * 1000 * 60 * 3 },
   })
 );
@@ -64,10 +62,10 @@ app.use(async (req, res, next) => {
 });
 
 // add breadcrumbs
-get_breadcrumbs = function (url) {
-  var rtn = [{ name: "Home", url: "/" }],
-    acc = "", // accumulative url
-    arr = url.substring(1).split("/");
+getBreadCrumbs = function (url) {
+  const rtn = [{ name: "Home", url: "/" }];
+  let acc = ""; // accumulative url
+  const arr = url.substring(1).split("/");
 
   for (i = 0; i < arr.length; i++) {
     acc = i != arr.length - 1 ? acc + "/" + arr[i] : null;
@@ -79,11 +77,11 @@ get_breadcrumbs = function (url) {
   return rtn;
 };
 app.use(function (req, res, next) {
-  req.breadcrumbs = get_breadcrumbs(req.originalUrl);
+  req.breadcrumbs = getBreadCrumbs(req.originalUrl);
   next();
 });
 
-//routes config
+// routes config
 const indexRouter = require("./routes/index");
 const productsRouter = require("./routes/products");
 const usersRouter = require("./routes/user");
@@ -109,7 +107,7 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-var port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 app.set("port", port);
 app.listen(port, () => {
   console.log("Server running at port " + port);

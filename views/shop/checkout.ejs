@@ -23,7 +23,7 @@
             <label for="pincode">Pincode</label>
             <select id="pincode" class="form-control" required name="pincode">
               <option value="" selected disabled>Select a Pincode</option>
-              <% delivery_charges.forEach(function(item) { %>
+              <% deliveryCharges.forEach(function(item) { %>
                 <option value="<%= item.pincode %>"><%= item.pincode %></option>
               <% }); %>
             </select>

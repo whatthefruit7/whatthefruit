@@ -1,6 +1,6 @@
-let middlewareObject = {};
+const middlewareObject = {};
 
-//a middleware to check if a user is logged in or not
+// a middleware to check if a user is logged in or not
 middlewareObject.isNotLoggedIn = (req, res, next) => {
   console.log("its from middleware:");
   console.log(req.user);
@@ -16,6 +16,5 @@ middlewareObject.isLoggedIn = (req, res, next) => {
   }
   res.redirect("/user/signin");
 };
-
 
 module.exports = middlewareObject;

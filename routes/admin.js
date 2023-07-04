@@ -6,10 +6,8 @@ const Product = require("../models/product");
 const User = require("../models/user");
 const Order = require("../models/order");
 const Category = require("../models/category");
+const Coupon = require("../models/coupon");
 AdminBro.registerAdapter(AdminBroMongoose);
-
-const express = require("express");
-const app = express();
 
 const adminBro = new AdminBro({
   databases: [mongoose],
@@ -20,6 +18,26 @@ const adminBro = new AdminBro({
     softwareBrothers: false,
   },
   resources: [
+    {
+      resource: Coupon,
+      options: {
+        parent: {
+          name: "Admin Content",
+          icon: "InventoryManagement",
+        },
+        properties: {
+          _id: {
+            isVisible: { list: false, filter: true, show: true, edit: false },
+          },
+          title: {
+            isTitle: true,
+          },
+          discountPercentage: {
+            type: "number",
+          },
+        },
+      },
+    },
     {
       resource: Product,
       options: {
@@ -166,8 +184,8 @@ const adminBro = new AdminBro({
 });
 
 const ADMIN = {
-  email: 'banda@gmail.com',
-  password: 'banda',
+  email: "banda@gmail.com",
+  password: "banda",
 };
 
 const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {

@@ -35,7 +35,7 @@ const userContactUsValidationRules = () => {
 const validateSignup = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    var messages = [];
+    const messages = [];
     errors.array().forEach((error) => {
       messages.push(error.msg);
     });
@@ -48,7 +48,7 @@ const validateSignup = (req, res, next) => {
 const validateSignin = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    var messages = [];
+    const messages = [];
     errors.array().forEach((error) => {
       messages.push(error.msg);
     });
@@ -61,7 +61,7 @@ const validateSignin = (req, res, next) => {
 const validateContactUs = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    var messages = [];
+    const messages = [];
     errors.array().forEach((error) => {
       messages.push(error.msg);
     });

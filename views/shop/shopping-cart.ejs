@@ -56,10 +56,14 @@
               ><i class="fa fa-plus-square" aria-hidden="true"></i
             > </a>
           </td>
-
-
             
-            <td>₹<%= product.price %></td>
+          <td>
+            <% if (product.discountPrice) { %>
+              ₹<%= product.discountPrice %>
+            <% } else { %>
+              ₹<%= product.price %>
+            <% } %>
+          </td>
             <td>₹<%= product.totalPrice %></td>
             <td>
               <a
