@@ -24,9 +24,6 @@ async function seedDB() {
   await seedCateg("Cold Pressed Juices");
   await seedCateg("Fruit Salads");
   await seedCateg("Fruit shakes");
-  // await seedCateg("Travel");
-  // await seedCateg("Totes");
-  // await seedCateg("Purses");
   await closeDB();
 }
 
